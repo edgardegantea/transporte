@@ -24,6 +24,27 @@
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
+        <div class="mt-4">
+            <a href="{{ route('auth.redirectFacebook') }}"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 rounded w-full block text-center">
+                Iniciar Sesión con Facebook
+            </a>
+        </div>
+
+        <div class="mt-4">
+            <a href="{{ route('auth.redirectGoogle') }}"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 rounded w-full block text-center">
+                Iniciar Sesión con Google
+            </a>
+        </div>
+
+        <div class="mt-4">
+            <a href="{{ route('auth.redirectTwitter') }}"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 rounded w-full block text-center">
+                Iniciar Sesión con Twitter
+            </a>
+        </div>
+        
         <!-- Remember Me -->
         <div class="block mt-4">
             <label for="remember_me" class="inline-flex items-center">

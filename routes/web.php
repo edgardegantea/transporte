@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SocialAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,19 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+// Rutas de logueo con Facebook
+Route::get('/auth/redirectFacebook', [SocialAuthController::class, 'redirectFacebook'])->name('auth.redirectFacebook');
+Route::get('/auth/callbackFacebook', [SocialAuthController::class, 'callbackFacebook'])->name('auth.callbackFacebook');
+
+// Rutas de logueo con Google
+Route::get('/auth/redirectGoogle', [SocialAuthController::class, 'redirectGoogle'])->name('auth.redirectGoogle');
+Route::get('/auth/callbackGoogle', [SocialAuthController::class, 'callbackGoogle'])->name('auth.callbackGoogle');
+
+// Rutas de logueo con Twitter
+Route::get('/auth/redirectTwitter', [SocialAuthController::class, 'redirectTwitter'])->name('auth.redirectTwitter');
+Route::get('/auth/callbackTwitter', [SocialAuthController::class, 'callbackTwitter'])->name('auth.callbackTwitter');
+
+// Redirecciones y devoluciones de llamada de Socialite
+Route::get('login/{provider}', 'SocialAuthController@redirectToProvider');
+Route::get('login/{provider}/callback', 'SocialAuthController@handleProviderCallback');
