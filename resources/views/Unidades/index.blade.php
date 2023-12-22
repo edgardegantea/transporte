@@ -22,8 +22,9 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th>id</th>
+                            <th>ID</th>
                             <th>Unidad</th>
+                            <th>Propietario</th>
                             <th>Placa</th>
                             <th>Adquisición</th>
                             <th>Estatus</th>
@@ -34,17 +35,24 @@
                         <tbody>
                         @foreach($unidades as $unidad)
                             <tr>
-                                <td>{{ $unidad->id }}</td>
+                                <td>{{ $unidad->id_Unidad }}</td>
                                 <td>{{ $unidad->numeroUnidad }}</td>
+
+                                <td>
+                                    @foreach($unidad->usuarios as $propietario)
+                                        {{ $propietario->name }}
+                                    @endforeach
+                                </td>
+
                                 <td>{{ $unidad->placa }}</td>
                                 <td>{{ $unidad->fechaAdquisicion }}</td>
-                                <td>{{ $unidad->status }}</td>
+                                <td>{{ $unidad->estatus }}</td>
                                 <td>
-                                    <a class="btn btn-success" href="{{ route('unidades.show', [$unidad->id]) }}">Ver</a>
-                                    <a class="btn btn-primary" href="{{ route('unidades.edit', [$unidad->id]) }}">Editar</a>
+                                    <a class="btn btn-success" href="{{ route('unidades.show', [$unidad->id_Unidad]) }}">Ver</a>
+                                    <a class="btn btn-primary" href="{{ route('unidades.edit', [$unidad->id_Unidad]) }}">Editar</a>
 
-                                    <button class="btn btn-danger" form="delete_{{$unidad->id}}" onclick="return confirm('¿Estás seguro de eliminar la unidad?')">Eliminar</button>
-                                    <form action="{{ route('unidades.destroy', $unidad->id)}}" id="delete_{{$unidad->id}}" method="post" enctype="multipart/form-data" hidden>
+                                    <button class="btn btn-danger" form="delete_{{$unidad->id_Unidad}}" onclick="return confirm('¿Estás seguro de eliminar la unidad?')">Eliminar</button>
+                                    <form action="{{ route('unidades.destroy', $unidad->id_Unidad)}}" id="delete_{{$unidad->id_Unidad}}" method="post" enctype="multipart/form-data" hidden>
                                         @csrf
                                         @method('DELETE')
                                     </form>

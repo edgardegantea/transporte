@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Unit extends Model
+class Unidad extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'id';
-    protected $table = 'units';
+    protected $primaryKey = 'id_Unidad';
+    protected $table = 'unidad';
     protected $fillable = [
         'numeroUnidad',
         'marca',
@@ -22,6 +22,10 @@ class Unit extends Model
         'tipoCombustible',
         'kilometrajeActual',
         'descripcion',
-        'status'
+        'estatus'
     ];
+
+    public function usuarios(){
+        return $this->belongsToMany(User::class, 'concesionario_unidad', 'id_Unidad', 'id_Usuario');
+    }
 }

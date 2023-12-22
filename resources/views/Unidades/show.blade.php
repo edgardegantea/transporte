@@ -58,11 +58,11 @@
                             <br><br>
 
                             <label for=""><b>Descripción: </b></label>
-                            <label for="">{{$unidad->descipcion}} </label>
+                            <label for="">{{$unidad->descripcion}} </label>
                             <br><br>
 
                             <label for=""><b>Estatus: </b></label>
-                            <label for="">{{$unidad->status}} </label>
+                            <label for="">{{$unidad->estatus}} </label>
 
                         </div>
 

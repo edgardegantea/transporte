@@ -42,4 +42,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function unidades(){
+        return $this->belongsToMany(Unidad::class, 'concesionario_unidad', 'id_Usuario', 'id_Unidad');
+    }
 }

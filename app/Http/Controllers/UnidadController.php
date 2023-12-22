@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Unit;
+use App\Models\Unidad;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
-class UnitController extends Controller
+class UnidadController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,8 @@ class UnitController extends Controller
     public function index()
     {
         //
-        $unidades = Unit::all();
+        $unidades = Unidad::all();
+
         return view('unidades.index', ['unidades' => $unidades]);
     }
 
@@ -24,7 +25,7 @@ class UnitController extends Controller
     public function create()
     {
         //
-        $unidades = Unit::get();
+        $unidades = Unidad::get();
         return view('unidades.create', ['unidades' => $unidades]);
     }
 
@@ -34,7 +35,7 @@ class UnitController extends Controller
     public function store(Request $request)
     {
         //
-        $unidad = new Unit();
+        $unidad = new Unidad();
         $unidad = $this->createUpdateUnit($request, $unidad);
         return redirect()->route('unidades.index');
     }
@@ -50,8 +51,14 @@ class UnitController extends Controller
         $unidad->tipoCombustible = $request->tipoCombustible;
         $unidad->kilometrajeActual = $request->kilometrajeActual;
         $unidad->descripcion = $request->descripcion;
-        $unidad->status = $request->status;
+        $unidad->estatus = $request->estatus;
         $unidad->save();
+
+        $usuario = auth()->user();
+        $id_Usuario = $usuario->id;
+
+        $unidad->usuarios()->attach($id_Usuario);
+
         return $unidad;
     }
 
@@ -61,7 +68,7 @@ class UnitController extends Controller
     public function show(string $id)
     {
         //
-        $unidad = Unit::where('id', $id)->firstOrFail();
+        $unidad = Unidad::where('id_Unidad', $id)->firstOrFail();
         return view('unidades.show', ['unidad' => $unidad]);
     }
 
@@ -71,7 +78,7 @@ class UnitController extends Controller
     public function edit(string $id)
     {
         //
-        $unidad = Unit::where('id', $id)->firstOrFail();
+        $unidad = Unidad::where('id_unidad', $id)->firstOrFail();
         return view('unidades.edit', ['unidad' => $unidad]);
     }
 
@@ -81,7 +88,7 @@ class UnitController extends Controller
     public function update(Request $request, string $id)
     {
         //
-        $unidad = Unit::where('id', $id)->firstOrFail();
+        $unidad = Unidad::where('id_unidad', $id)->firstOrFail();
         $unidad = $this->createUpdateUnit($request, $unidad);
         return redirect()->route('unidades.index');
     }
@@ -92,12 +99,12 @@ class UnitController extends Controller
     public function destroy(string $id)
     {
         //
-        $unidad = Unit::findOrFail($id);
+        $unidad = Unidad::findOrFail($id);
         try {
             $unidad->delete();
             return redirect()->route('unidades.index');
         } catch (QueryException $exception){
-            return redirect()->route('unidades.index');
+            return redirect()->route('unidades.index', compact('exception'));
         }
     }
 }

@@ -15,7 +15,7 @@
 
                     <br><br>
                     <div>
-                        <form action="{{ route ('unidades.update', $unidad->id ) }}" method="POST" enctype="multipart/form-data" id="create">
+                        <form action="{{ route ('unidades.update', $unidad->id_Unidad ) }}" method="POST" enctype="multipart/form-data" id="create">
                             @method('PUT')
                             @include('unidades.partials.form')
                         </form>

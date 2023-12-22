@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('units', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('unidad', function (Blueprint $table) {
+            $table->increments('id_Unidad');
             $table->string('numeroUnidad', 15);
             $table->string('marca', 50);
             $table->string('modelo', 50);
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->enum('tipoCombustible', ['Diesel', 'Gasolina', 'Gas']);
             $table->integer('kilometrajeActual');
             $table->string('descripcion', 100);
-            $table->string('status', 20);
+            $table->string('estatus', 20);
             $table->timestamps();
         });
     }

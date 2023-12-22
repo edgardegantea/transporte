@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     //Unidades
-    Route::resource('/unidades', \App\Http\Controllers\UnitController::class)->names('unidades');
+    Route::resource('/unidades', \App\Http\Controllers\UnidadController::class)->names('unidades');
 });
 
 require __DIR__.'/auth.php';
