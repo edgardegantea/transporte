@@ -26,6 +26,6 @@ class Unidad extends Model
     ];
 
     public function usuarios(){
-        return $this->belongsToMany(User::class, 'concesionario_unidad', 'id_Unidad', 'id_Usuario');
+        return $this->belongsToMany(Usuario::class, 'consecionario_unidad', 'id_Unidad', 'id_Usuario');
     }
 }

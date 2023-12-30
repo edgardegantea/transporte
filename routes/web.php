@@ -30,6 +30,10 @@ Route::middleware('auth')->group(function () {
 
     //Unidades
     Route::resource('/unidades', \App\Http\Controllers\UnidadController::class)->names('unidades');
+    Route::get('unidades/propietarios/{id_Unidad}', [\App\Http\Controllers\UnidadController::class, 'verPropietariosPorUnidad'])->name('verPropietarios');
+    Route::delete('unidades/propietarios/eliminar/{id_consecionarioUnidad}', [\App\Http\Controllers\UnidadController::class, 'eliminarPropietariosPorUnidad'])->name('eliminarPropietarios');
+    Route::get('unidades/propietarios/asignar/{id_Unidad}', [\App\Http\Controllers\UnidadController::class, 'asignarPropietariosPorUnidad'])->name('asignarPropietarios');
+    Route::post('unidades/propietarios/asignar/guardar', [\App\Http\Controllers\UnidadController::class, 'guardarAsignacionPropietariosPorUnidad'])->name('guardarAsignacionPropietarios');
 });
 
 require __DIR__.'/auth.php';

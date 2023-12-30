@@ -43,7 +43,7 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function unidades(){
+    /*public function unidades(){
         return $this->belongsToMany(Unidad::class, 'concesionario_unidad', 'id_Usuario', 'id_Unidad');
-    }
+    }*/
 }
