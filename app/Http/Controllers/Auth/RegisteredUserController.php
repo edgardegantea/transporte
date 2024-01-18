@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Usuario;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -45,7 +46,15 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
+        
+        // Verifica si el usuario tiene registros en la tabla usuarios
+        if (!Usuario::where('id', $user->id)->exists()) {
+            // Si no hay registros, redirige a la ruta de creación de usuario
+            return redirect()->route('usuarios.index');
+        }
 
+        // Si hay registros, redirige al dashboard o a la ruta deseada
         return redirect(RouteServiceProvider::HOME);
+
     }
 }

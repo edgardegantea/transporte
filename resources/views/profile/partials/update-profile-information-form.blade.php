@@ -13,14 +13,44 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.update', ['id' => $user->id]) }}" class="mt-6 space-y-6">
         @csrf
         @method('patch')
 
         <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
+            <x-input-label for="name" :value="__('Username')" />
+            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
+        </div>
+
+        <div>
+            <x-input-label for="nombre" :value="__('Nombre')" />
+            <x-text-input id="nombre" name="nombre" type="text" class="mt-1 block w-full" :value="old('nombre', $detalleUsuario->nombre)" required autocomplete="nombre" />
+            <x-input-error class="mt-2" :messages="$errors->get('nombre')" />
+        </div>
+
+        <div>
+            <x-input-label for="apellidoPaterno" :value="__('Apellido Paterno')" />
+            <x-text-input id="apellidoPaterno" name="apellidoPaterno" type="text" class="mt-1 block w-full" :value="old('apellidoPaterno', $detalleUsuario->apellidoPaterno)" required autocomplete="apellidoPaterno" />
+            <x-input-error class="mt-2" :messages="$errors->get('apellidoPaterno')" />
+        </div>
+
+        <div>
+            <x-input-label for="apellidoMaterno" :value="__('Apellido Materno')" />
+            <x-text-input id="apellidoMaterno" name="apellidoMaterno" type="text" class="mt-1 block w-full" :value="old('apellidoMaterno', $detalleUsuario->apellidoMaterno)" required autocomplete="apellidoMaterno" />
+            <x-input-error class="mt-2" :messages="$errors->get('apellidoMaterno')" />
+        </div>
+
+        <div>
+            <x-input-label for="sexo" :value="__('Sexo')" />
+            <x-text-input id="sexo" name="sexo" type="text" class="mt-1 block w-full" :value="old('sexo', $detalleUsuario->sexo)" required autocomplete="sexo" />
+            <x-input-error class="mt-2" :messages="$errors->get('sexo')" />
+        </div>
+
+        <div>
+            <x-input-label for="fechaDeNacimiento" :value="__('Fecha de Nacimiento')" />
+            <x-text-input id="fechaDeNacimiento" name="fechaDeNacimiento" type="date" class="mt-1 block w-full" :value="old('fechaDeNacimiento', $detalleUsuario->fechaDeNacimiento)" required autocomplete="fechaDeNacimiento" />
+            <x-input-error class="mt-2" :messages="$errors->get('fechaDeNacimiento')" />
         </div>
 
         <div>
